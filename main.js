@@ -69,22 +69,29 @@ Ball.prototype.collisionDetect = function() {
   for (let j = 0; j < balls.length; j++) {
     if (!(this === balls[j])) {
       const dx = this.x - balls[j].x;
+
       const dy = this.y - balls[j].y;
+
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < this.size + balls[j].size) {
         balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
-        window.open("https://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2022/03/22142353/Backrooms-horror-short.jpg");
-      }
-    }
-  }
-}
 
+        window.open("https://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2022/03/22142353/Backrooms-horror-short.jpg");
+
+      }
+
+    }
+
+  }
+
+}
 
 let balls = [];
 
 while (balls.length < 25) {
   let size = random(10,20);
+
   let ball = new Ball(
     // ball position always drawn at least one ball width
     // away from the edge of the canvas, to avoid drawing errors
@@ -113,6 +120,7 @@ function loop() {
     balls[i].draw();
 
     balls[i].update();
+    
     balls[i].collisionDetect();
 
   }
