@@ -6,6 +6,9 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 
+let img = new Image();
+img.src = 'https://m.media-amazon.com/images/I/815JyABmByL._AC_SL1500_.jpg' ;
+
 // function to generate random number
 
 function random(min, max) {
@@ -31,6 +34,8 @@ Ball.prototype.draw = function() {
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
 
   ctx.fill();
+
+  ctx.drawImage(img, this.x, this.y, 100, 100);
 
 }
 
@@ -59,6 +64,22 @@ Ball.prototype.update = function() {
   this.y += this.velY;
 
 }
+
+Ball.prototype.collisionDetect = function() {
+  for (let j = 0; j < balls.length; j++) {
+    if (!(this === balls[j])) {
+      const dx = this.x - balls[j].x;
+      const dy = this.y - balls[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + balls[j].size) {
+        balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
+        window.open("https://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2022/03/22142353/Backrooms-horror-short.jpg");
+      }
+    }
+  }
+}
+
 
 let balls = [];
 
@@ -92,6 +113,7 @@ function loop() {
     balls[i].draw();
 
     balls[i].update();
+    balls[i].collisionDetect();
 
   }
 
