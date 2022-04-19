@@ -99,9 +99,9 @@ while (balls.length < 25) {
 
     random(0 + size,height - size),
 
-    random(-7,7),
+    random(-2,7),
 
-    random(-7,7),
+    random(-2,7),
 
     'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
     size
@@ -120,7 +120,7 @@ function loop() {
     balls[i].draw();
 
     balls[i].update();
-    
+
     balls[i].collisionDetect();
 
   }
